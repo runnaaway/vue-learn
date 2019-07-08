@@ -17,9 +17,9 @@
 <script>
 import router from './router'
 import store from './store'
+import Header from './components/common/Header.vue'
 import Modal from './components/common/Modal.vue'
 import Menu from './components/common/Menu.vue'
-import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
 
 export default {
@@ -27,10 +27,10 @@ export default {
   store,
   router,
   components: {
+    appHeader: Header,
     appModal: Modal,
     appMenu: Menu,
     appFooter: Footer,
-    appHeader: Header,
   }
 }
 </script>

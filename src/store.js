@@ -9,8 +9,8 @@ export default new Vuex.Store({
     userName: 'Bro'
   },
   mutations: {
-    changeName(state, payload) {
-      this.state.userName = payload;
+    changeName(state, name) {
+      this.state.userName = name;
     }
   }
 })

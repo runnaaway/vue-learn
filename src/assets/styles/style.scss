@@ -69,7 +69,7 @@ footer {
 }
 
 .menu-item {
-	&.current {
+	&.router-link-exact-active {
 		.menu-lnk {
 			background: #ffffff;
 			color: #000000;

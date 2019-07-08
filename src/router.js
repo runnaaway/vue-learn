@@ -10,7 +10,6 @@ import Contacts from './components/pages/Contacts.vue'
 
 export default new Router({
   mode: 'history',
-  base: 'localhost:8080',
   routes: [{
     path: '/',
     name: 'Home',
