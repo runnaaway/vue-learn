@@ -7,5 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     userName: 'Bro'
+  },
+  mutations: {
+    changeName(state, payload) {
+      this.state.userName = payload;
+    }
   }
 })

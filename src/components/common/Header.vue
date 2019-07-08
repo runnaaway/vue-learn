@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1>Welcome, {{ updateUserName }}!</h1>
+          <h1>Welcome, {{ userNameUpdated }}!</h1>
         </div>
       </div>
     </div>
@@ -11,16 +11,18 @@
 </template>
 
 <script>
+
+import {mapState} from 'vuex';
+
 export default {
-  data() {
-    return {
-//      userName: ''
-    }
-  },
-  computed: {
-    updateUserName() {
-      return this.$store.state.userName
-    }
-  }
+  //computed: {
+  //  updateUserName() {
+  //    return this.$store.state.userName
+  //  }
+  //}
+  computed: mapState({
+    userName: state => state.userName,
+    userNameUpdated: 'userName'
+  })
 }
 </script>

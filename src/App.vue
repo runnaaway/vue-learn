@@ -15,13 +15,12 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import router from './router'
+import store from './store'
 import Modal from './components/common/Modal.vue'
 import Menu from './components/common/Menu.vue'
 import Header from './components/common/Header.vue'
 import Footer from './components/common/Footer.vue'
-import store from './store'
 
 export default {
   name: 'app',
