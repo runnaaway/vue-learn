@@ -6,10 +6,10 @@
           <h5 class="modal-title">Please, enter your name</h5>
         </div>
         <div class="modal-body">
-          <input class="form-control" type="text" :value="userName" @input="updateName($event.target.value)" @keyup.enter="toggleModal">
+          <input class="form-control" type="text" v-model="userName" @keyup.enter="updateName">
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" @click="toggleModal">Dats my name</button>
+          <button type="button" class="btn btn-primary" @click="toggleModal">Dats my name</button>
         </div>
       </div>
     </div>
@@ -17,28 +17,23 @@
 </template>
 
 <script>
-import store from '../../store'
-import { mapState } from 'vuex';
-
-
+import {mapMutations} from 'vuex';
 export default {
   data () {
     return {
-      modalVisible: true,
-    }
-  },
-  computed: {
-    userName() {
-      return this.$store.state.userName
+      userName: '',
+      modalVisible: true
     }
   },
   methods: {
-    updateName(val) {
-      this.$store.commit('changeName', val)
+    updateName() {
+      this.changeName(this.userName);
+      this.toggleModal();
     },
     toggleModal: function() {
       this.modalVisible = !this.modalVisible;
-    }
+    },
+    ...mapMutations(['changeName'])
   }
 }
 </script>
