@@ -1,14 +1,16 @@
 <template>
-  <app-modal @confirm="onConfirm">
-    <template v-slot:title>Please, enter your name</template>
-
+  <app-modal
+      @confirm="onConfirm"
+      modalTitle="Please, enter your name"
+      confirmButton="Dats my name"
+      dismissButton="F*ck off">
     <template v-slot="{closeModal}">
       <!-- на самом деле можно избавиться от @keyup если нам не надо сохранения по Enter, и тогда все будет выглядеть аккуратно -->
-      <input class="form-control" type="text" v-model="userName" @keyup.enter="updateName(closeModal)">
+      <input class="form-control"
+             type="text"
+             v-model="userName"
+             @keyup.enter="updateName(closeModal)">
     </template>
-
-    <template v-slot:confirm>Dats my name</template>
-    <template v-slot:dismiss>F*ck off</template>
   </app-modal>
 </template>
 

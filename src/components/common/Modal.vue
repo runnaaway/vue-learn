@@ -3,14 +3,22 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title"><slot name="title"></slot></h5>
+          <h5 class="modal-title">{{ modalTitle }}</h5>
         </div>
         <div class="modal-body">
           <slot :closeModal="closeModal"></slot>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" v-if="dismissButton" @click="dismiss"><slot name="dismiss"></slot></button>
-          <button type="button" class="btn btn-primary" @click="confirm"><slot name="confirm"></slot></button>
+          <button type="button"
+                  class="btn btn-warning"
+                  v-if="dismissButton"
+                  @click="dismiss"
+          >{{dismissButton}}</button>
+          <button type="button"
+                  class="btn btn-primary"
+                  v-if="confirmButton"
+                  @click="confirm"
+          >{{confirmButton}}</button>
         </div>
       </div>
     </div>
@@ -20,9 +28,14 @@
 <script>
 export default {
   props: {
+    modalTitle: {
+      type: String
+    },
+    confirmButton: {
+      type: String
+    },
     dismissButton: {
-      type: Boolean,
-      default: () => true
+      type: String
     }
   },
   data () {
