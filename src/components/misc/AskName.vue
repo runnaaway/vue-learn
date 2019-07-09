@@ -1,5 +1,5 @@
 <template>
-  <app-modal>
+  <app-modal @confirm="onConfirm">
     <template v-slot:title>Please, enter your name</template>
 
     <template v-slot="{closeModal}">
@@ -27,6 +27,9 @@ export default {
     appModal
   },
   methods: {
+    onConfirm(){
+      this.changeName(this.userName);
+    },
     updateName(closeModal) {
       this.changeName(this.userName);
 
