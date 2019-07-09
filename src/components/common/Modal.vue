@@ -1,15 +1,16 @@
 <template>
-  <div class="modal" tabindex="-1" role="dialog" v-show="modalVisible">
+  <div class="modal" tabindex="-1" role="dialog" v-show="modalVisibility">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Please, enter your name</h5>
+          <h5 class="modal-title"><slot name="title"></slot></h5>
         </div>
         <div class="modal-body">
-          <input class="form-control" type="text" v-model="userName" @keyup.enter="updateName">
+          <slot :closeModal="closeModal"></slot>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="toggleModal">Dats my name</button>
+          <button type="button" class="btn btn-warning" v-if="dismissButton" @click="dismiss"><slot name="dismiss"></slot></button>
+          <button type="button" class="btn btn-primary" @click="confirm"><slot name="confirm"></slot></button>
         </div>
       </div>
     </div>
@@ -17,23 +18,33 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex';
 export default {
+  props: {
+    dismissButton: {
+      type: Boolean,
+      default: () => true
+    }
+  },
   data () {
     return {
-      userName: '',
-      modalVisible: true
+      modalVisibility: true
     }
   },
   methods: {
-    updateName() {
-      this.changeName(this.userName);
-      this.toggleModal();
+    confirm() {
+      this.$emit('confirm');
+      this.setModalVisibility(false);
     },
-    toggleModal: function() {
-      this.modalVisible = !this.modalVisible;
+    dismiss() {
+      this.$emit('dismiss');
+      this.setModalVisibility(false);
     },
-    ...mapMutations(['changeName'])
+    closeModal() {
+      this.setModalVisibility(false);
+    },
+    setModalVisibility(value) {
+      this.modalVisibility = value
+    }
   }
 }
 </script>
