@@ -1,26 +1,30 @@
 <template>
   <div id="app" class="app">
-    <app-modal></app-modal>
-    <app-header></app-header>
+    <ask-name/>
+
+    <app-header/>
+
     <div class="container">
       <div class="row">
-        <app-menu></app-menu>
+        <app-menu/>
         <div class="content col-9">
-          <router-view></router-view>
+          <router-view/>
         </div>
       </div>
     </div>
-    <app-footer></app-footer>
+
+    <app-footer/>
   </div>
 </template>
 
 <script>
 import router from './router'
 import store from './store'
+
 import Header from './components/common/Header.vue'
-import Modal from './components/common/Modal.vue'
 import Menu from './components/common/Menu.vue'
 import Footer from './components/common/Footer.vue'
+import AskName from './components/misc/AskName.vue'
 
 export default {
   name: 'app',
@@ -28,7 +32,7 @@ export default {
   router,
   components: {
     appHeader: Header,
-    appModal: Modal,
+    askName: AskName,
     appMenu: Menu,
     appFooter: Footer,
   }
