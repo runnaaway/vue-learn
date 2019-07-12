@@ -2,20 +2,20 @@
   <div>
     <h2>Ama Catalog</h2>
     <div class="catalog-list">
-      <pre style="color: #ffffff;">{{ info }}</pre>
-      <!--<catalog-entry></catalog-entry>-->
-      <!--<catalog-entry></catalog-entry>-->
-      <!--<catalog-entry></catalog-entry>-->
+<!--      <pre style="color: #ffffff;">{{ info[0].address }}</pre>-->
+      <catalog-entry v-for="(item) in info"
+                     :key="item.id"
+                     :name="item.name"
+                     :email="item.email"
+                     :phone="item.phone"
+      ></catalog-entry>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import Axios from 'axios';
 import CatalogEntry from '../common/CatalogEntry.vue'
-
-//Vue.component('catalog-entry', {})
 
 export default {
   data() {
@@ -26,7 +26,13 @@ export default {
   mounted() {
     Axios
       .get('http://jsonplaceholder.typicode.com/users')
-      .then(response => (this.info = response));
+      .then(response => (this.info = response.data));
+  },
+  components: {
+    CatalogEntry
+  },
+  computed: {
+
   }
 }
 </script>
