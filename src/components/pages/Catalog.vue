@@ -8,16 +8,14 @@
               <span>All</span>
           </label>
           <label v-for="item in filter" class="filter__label">
-              <input type="checkbox" name="website" :value="item" v-model="checked">
+              <input type="checkbox" name="website" :value="item">
               <span>{{item}}</span>
           </label>
           <div class="filter__title">Search: </div>
-          <input class="form-control" type="text" v-model="searchFilter">
+          <input class="form-control" type="text" v-model="searchByName">
       </div>
-      {{checked}}
     <div class="catalog-list">
-<!--      <pre style="color: #ffffff;">{{ info }}</pre>-->
-      <catalog-entry v-for="(item, i) in info"
+      <catalog-entry v-for="(item, i) in filteredByName"
                      :key="item.id"
                      :photo="photo(i)"
                      :coords="coords(i)"
@@ -39,16 +37,18 @@ import CatalogEntry from '../common/CatalogEntry.vue'
 export default {
   data() {
     return {
-      info: null,
+      info: [],
       filter: ['org', 'net', 'info', 'biz', 'io', 'com'],
       all: '',
-      searchFilter: ''
+      searchByName: ''
     }
   },
   mounted() {
     Axios
       .get('http://jsonplaceholder.typicode.com/users')
-      .then(response => {this.info = response.data});
+      .then(response => {
+        this.info = response.data
+      });
   },
   components: {
     CatalogEntry
@@ -64,6 +64,13 @@ export default {
     },
     photo(index) {
       return 'https://picsum.photos/id/' + index + '/200'
+    },
+  },
+  computed: {
+    filteredByName: function () {
+      return this.info.filter((item) => {
+        return item.name.toLowerCase().match(this.searchByName)
+      });
     }
   }
 }
