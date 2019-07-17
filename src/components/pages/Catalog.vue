@@ -55,12 +55,11 @@ export default {
   },
   methods: {
     address(index) {
-      let address = this.info[index].address.city + ', ' + this.info[index].address.street + ' ' + this.info[index].address.suite;
-      return address
+      return this.info[index].address.city + ', ' + this.info[index].address.street + ' ' + this.info[index].address.suite;
+
     },
     coords(index) {
-      let coords = this.info[index].address.geo.lat + ', ' + this.info[index].address.geo.lng;
-      return coords
+      return this.info[index].address.geo.lat + ', ' + this.info[index].address.geo.lng;
     },
     photo(index) {
       return 'https://picsum.photos/id/' + index + '/200'
@@ -68,7 +67,7 @@ export default {
   },
   computed: {
     filteredByName: function () {
-      return this.info.filter((item) => {
+      return this.info.filter(item => {
         return item.name.toLowerCase().match(this.searchByName)
       });
     }
