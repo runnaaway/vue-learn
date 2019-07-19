@@ -139,7 +139,7 @@ footer {
 	border-bottom: 1px solid #fff;
 
 	.filter__title {
-		margin: 0 10px 0 20px;
+		margin: 0 10px 0 auto;
 
 		&:first-child {
 			margin: 0;
@@ -190,5 +190,9 @@ footer {
 				background: #ffffff;
 			}
 		}
+	}
+
+	.form-control {
+		width: 200px;
 	}
 }
